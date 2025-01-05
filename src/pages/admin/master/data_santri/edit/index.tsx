@@ -1,0 +1,130 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import CustomContainer from 'components/CustomContainer';
+import ContentParent from 'components/ContentParent';
+import Footer from 'components/Footer';
+import CustomPaper from 'components/CustomPaper';
+import { Alert, Button, Stack, TextField } from '@mui/material';
+import Grid from '@mui/material/Grid';
+import { FormEvent, useEffect, useRef, useState } from 'react';
+import { select, update } from 'request/request';
+import { useNavigate, useParams } from 'react-router-dom';
+const index = () => {
+  const formRef = useRef(null as any);
+  const [selectedData, setSelectedData] = useState<any>({});
+  const [loading, setLoading] = useState<boolean>(true);
+  const params = useParams();
+  const [errorMessage, setErrorMessage] = useState('');
+  const navigate = useNavigate();
+  const getData = () => {
+    select({ link: '/santri/get_data/' + params?.id_santri })
+      .then((res) => {
+        const { data } = res.data;
+        setSelectedData(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(formRef.current);
+    let obj = {};
+    formData.forEach((value, key) => {
+      obj = {
+        ...obj,
+        [key]: value,
+      };
+    });
+    update({ data: obj, link: '/santri/edit', id: params?.id_santri })
+      .then((res) => {
+        const { data } = res;
+        console.log(data);
+        navigate('/pages/guru/master/data_santri');
+      })
+      .catch((err) => {
+        const { data } = err.response;
+        setErrorMessage(data.data);
+        // console.log(data);
+      });
+  };
+  useEffect(() => {
+    getData();
+  }, []);
+  return (
+    <>
+      <CustomContainer>
+        <ContentParent>
+          {!loading && (
+            <CustomPaper Title={'Edit santri'}>
+              <Stack
+                padding={4}
+                onSubmit={handleSubmit}
+                ref={formRef}
+                component="form"
+                mt={3}
+                direction="column"
+                gap={2}
+              >
+                {errorMessage && (
+                  <Alert
+                    severity="error"
+                    onClose={() => {
+                      setErrorMessage('');
+                    }}
+                  >
+                    {errorMessage}.
+                  </Alert>
+                )}
+                <Grid container spacing={2} justifyContent={'space-between'}>
+                  <Grid item md={3}>
+                    <TextField
+                      id="username"
+                      name="username"
+                      variant="filled"
+                      color={'secondary'}
+                      defaultValue={selectedData?.username}
+                      required
+                      placeholder="Username"
+                      fullWidth
+                    />
+                  </Grid>
+                  <Grid item md={3}>
+                    <TextField
+                      id="password"
+                      name="password"
+                      variant="filled"
+                      color={'secondary'}
+                      defaultValue={selectedData?.password}
+                      required
+                      placeholder="Your Password"
+                      fullWidth
+                    />
+                  </Grid>
+                  <Grid item md={6}>
+                    <TextField
+                      id="nama_lengkap"
+                      name="nama_lengkap"
+                      variant="filled"
+                      color={'secondary'}
+                      defaultValue={selectedData?.nama_lengkap}
+                      required
+                      placeholder="Nama lengkap"
+                      fullWidth
+                    />
+                  </Grid>
+                </Grid>
+                <Button sx={{ marginLeft: 'auto' }} type="submit" variant="contained" size="medium">
+                  Submit
+                </Button>
+              </Stack>
+            </CustomPaper>
+          )}
+        </ContentParent>
+        <Footer />
+      </CustomContainer>
+    </>
+  );
+};
+
+export default index;
