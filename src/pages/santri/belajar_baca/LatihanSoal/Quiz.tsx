@@ -72,7 +72,7 @@ const Pages = (props: { children: React.ReactNode, Index: any, SetIndex: any, Le
     )
 }
 
-const Quiz = (props: { Level: any, Time: any, Stop: any }) => {
+const Quiz = (props: { Level: any, Time: any, Stop: any, IsCompleted: any }) => {
     const [result, setResult] = useState<any>([]);
     const [loading, setLoading] = useState<boolean>(false);
     const [jawaban, setJawaban] = useState<any>([])
@@ -235,6 +235,7 @@ const Quiz = (props: { Level: any, Time: any, Stop: any }) => {
                                             PilihanItem={result[index]?.pilihan}
                                             Idx={index}
                                             Jawaban={jawaban[index]?.jawaban}
+                                            IsCompleted={props.IsCompleted}
                                             SetJawaban={(value: any) => {
                                                 setJawaban(jawaban.map((x: any, idx: number) => {
                                                     return idx === index ? { ...x, "jawaban": value?.jawaban, "id_pilihan": value?.id_pilihan } : x
@@ -310,7 +311,7 @@ const Quiz = (props: { Level: any, Time: any, Stop: any }) => {
                                     maxWidth: "800px",
                                     margin: "12px auto 0 auto",
                                     // border: "1px solid red",
-                                    display: "none",
+                                    display: "grid",
                                     gap: "5px",
                                     justifyContent: "center",
                                     gridTemplateColumns: "repeat(auto-fit, minmax(32px, 0fr))"

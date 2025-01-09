@@ -229,7 +229,7 @@ const index = () => {
     return (
         <CustomContainer>
             <ContentParent>
-                <CustomPaper Title={'Soal'}>
+                <CustomPaper Title={'Quiz'}>
                     <SelectHeader
                         Label={"Level"}
                         Value={level}

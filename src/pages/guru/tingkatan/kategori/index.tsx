@@ -39,7 +39,7 @@ const columns: Column[] = [
 
 const Form = ({ IdTingkatan }: { IdTingkatan: any }) => {
     return (
-        <NavLink to={`/pages/guru/materi/kategori_tingkatan/tambah/${IdTingkatan}`}>
+        <NavLink to={`/pages/guru/belajar_ummi/kategori_tingkatan/tambah/${IdTingkatan}`}>
             <Button variant={'contained'}>Tambah kategori</Button>
         </NavLink>
     );
@@ -50,7 +50,7 @@ const index = () => {
     const { id_tingkatan } = params;
     const { result, loading, } = useFetch({ link: `kategori?id_tingkatan=${id_tingkatan}` });
     const handleUpdate = (x: any) => {
-        navigate(`/pages/guru/materi/kategori_tingkatan/edit/${id_tingkatan}/${x}`);
+        navigate(`/pages/guru/belajar_ummi/kategori_tingkatan/edit/${id_tingkatan}/${x}`);
     }
     return (
         <>

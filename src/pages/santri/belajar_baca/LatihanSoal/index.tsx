@@ -63,6 +63,7 @@ const DataNilai = (props: { Data: any, Columns: any }) => {
 const index = () => {
     const [pilihLevel, setPilihLevel] = useState();
     const [start, setStart] = useState(false);
+    const [isCompleted, setIsCompleted] = useState(false);
     const value = useContext(Content);
     const r: { id_santri?: string } = value?.user || {};
     const { result, loading } = useFetch({ link: "/pembahasan/get_data/" + r?.id_santri })
@@ -100,7 +101,7 @@ const index = () => {
             label: "Tanggal"
         },
     ]
-    const time = Date.now() + 3600000;
+    const time = Date.now() + 900000;
     return (
         <>
             <CustomContainer>
@@ -144,9 +145,14 @@ const index = () => {
                             :
                             <>
                                 <Stack justifyContent={"center"}>
-                                    <TimeQuiz Time={time} />
+                                    <TimeQuiz 
+                                        Time={time} 
+                                        OnComplete={() => {
+                                            setIsCompleted(true);
+                                        }}
+                                    />
                                 </Stack>
-                                <Quiz Stop={stopQuiz} Time={time} Level={pilihLevel} />
+                                <Quiz IsCompleted={isCompleted} Stop={stopQuiz} Time={time} Level={pilihLevel} />
                             </>
                         }
                         {(!loading && !start) &&

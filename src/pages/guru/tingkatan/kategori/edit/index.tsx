@@ -27,7 +27,6 @@ const index = () => {
     };
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        // /guru/materi/kategori_tingkatan/:id_tingkatan
         const formData = new FormData(formRef.current);
         let obj = {};
         formData.forEach((value, key) => {
@@ -38,7 +37,7 @@ const index = () => {
         });
         update({ data: obj, link: '/kategori/edit', id: id_kategori })
             .then(() => {
-                navigate('/pages/guru/materi/kategori_tingkatan/' + id_tingkatan);
+                navigate('/pages/guru/belajar_ummi/kategori_tingkatan/' + id_tingkatan);
             })
             .catch((err) => {
                 console.log(err);

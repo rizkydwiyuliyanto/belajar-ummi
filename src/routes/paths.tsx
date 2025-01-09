@@ -1,5 +1,5 @@
 // const Dashboard = lazy(() => import('pages/dashboard'));
-import { Outlet } from 'react-router-dom';
+// import { Outlet } from 'react-router-dom';
 import { lazy } from 'react';
 const Signin = lazy(() => import('pages/authentication/Signin'));
 const Signup = lazy(() => import('pages/authentication/Signup'));
@@ -51,31 +51,49 @@ const admin: RouteItem[] = [
     element: <DashboardAdmin />,
   },
   {
-    path: `/${rootPaths.pageRoot}/admin/master`,
-    id: 'master',
-    name: 'Master',
-    element: <Outlet />,
-    children: [
-      {
-        path: `/${rootPaths.pageRoot}/admin/master/data_guru`,
-        id: 'data_guru',
-        name: 'Data guru',
-        element: <GuruAdmin />,
-      },
-      {
-        path: `/${rootPaths.pageRoot}/admin/master/data_guru/tambah`,
-        id: 'tambah',
-        name: 'Tambah',
-        element: <TambahGuru />,
-      },
-      {
-        path: `/${rootPaths.pageRoot}/admin/master/data_guru/edit/:id_guru`,
-        id: 'edit',
-        name: 'Edit',
-        element: <EditGuru />,
-      },
-    ],
+    path: `/${rootPaths.pageRoot}/admin/master/data_guru`,
+    id: 'data_guru',
+    name: 'Data guru',
+    element: <GuruAdmin />,
   },
+  {
+    path: `/${rootPaths.pageRoot}/admin/master/data_guru/tambah`,
+    id: 'tambah',
+    name: 'Tambah',
+    element: <TambahGuru />,
+  },
+  {
+    path: `/${rootPaths.pageRoot}/admin/master/data_guru/edit/:id_guru`,
+    id: 'edit',
+    name: 'Edit',
+    element: <EditGuru />,
+  },
+  // {
+  //   path: `/${rootPaths.pageRoot}/admin/master`,
+  //   id: 'master',
+  //   name: 'Master',
+  //   element: <Outlet />,
+  //   children: [
+  //     {
+  //       path: `/${rootPaths.pageRoot}/admin/master/data_guru`,
+  //       id: 'data_guru',
+  //       name: 'Data guru',
+  //       element: <GuruAdmin />,
+  //     },
+  //     {
+  //       path: `/${rootPaths.pageRoot}/admin/master/data_guru/tambah`,
+  //       id: 'tambah',
+  //       name: 'Tambah',
+  //       element: <TambahGuru />,
+  //     },
+  //     {
+  //       path: `/${rootPaths.pageRoot}/admin/master/data_guru/edit/:id_guru`,
+  //       id: 'edit',
+  //       name: 'Edit',
+  //       element: <EditGuru />,
+  //     },
+  //   ],
+  // },
 ];
 const guru = [
   {
@@ -85,45 +103,45 @@ const guru = [
     element: <DashboardGuru />,
   },
   {
-    path: `/${rootPaths.pageRoot}/guru/materi`,
-    id: 'materi',
-    name: 'Ummi',
+    path: `/${rootPaths.pageRoot}/guru/belajar_ummi`,
+    id: 'belajar_ummi',
+    name: 'Belajar Ummi',
     element: <MateriGuru />,
   },
   {
-    path: `/${rootPaths.pageRoot}/guru/materi/tambah_tingkatan`,
+    path: `/${rootPaths.pageRoot}/guru/belajar_ummi/tambah_tingkatan`,
     id: 'tambah',
     name: 'Tambah',
     element: <TambahTingkatan />,
   },
   {
-    path: `/${rootPaths.pageRoot}/guru/materi/detail_tingkatan/:id_tingkatan`,
+    path: `/${rootPaths.pageRoot}/guru/belajar_ummi/detail_tingkatan/:id_tingkatan`,
     id: 'detail',
     name: 'Detail',
     element: <DetailTingkatanGuru />,
   },
   {
-    path: `/${rootPaths.pageRoot}/guru/materi/kategori_tingkatan/:id_tingkatan`,
+    path: `/${rootPaths.pageRoot}/guru/belajar_ummi/kategori_tingkatan/:id_tingkatan`,
     id: 'detail',
     name: 'Detail',
     element: <Kategori />,
   },
   {
-    path: `/${rootPaths.pageRoot}/guru/materi/kategori_tingkatan/tambah/:id_tingkatan`,
+    path: `/${rootPaths.pageRoot}/guru/belajar_ummi/kategori_tingkatan/tambah/:id_tingkatan`,
     id: 'tambah',
     name: 'Tambah',
     element: <TambahKategori />,
   },
   {
-    path: `/${rootPaths.pageRoot}/guru/materi/kategori_tingkatan/edit/:id_tingkatan/:id_kategori`,
+    path: `/${rootPaths.pageRoot}/guru/belajar_ummi/kategori_tingkatan/edit/:id_tingkatan/:id_kategori`,
     id: 'edit',
     name: 'Edit',
     element: <EditKategori />,
   },
   {
-    path: `/${rootPaths.pageRoot}/guru/soal`,
-    id: 'soal',
-    name: 'Soal',
+    path: `/${rootPaths.pageRoot}/guru/quiz`,
+    id: 'quiz',
+    name: 'Quiz',
     element: <MasterSoal />,
   },
   {
@@ -165,37 +183,61 @@ const santri = [
     element: <DashboardSantri />,
   },
   {
-    path: `/${rootPaths.pageRoot}/santri/latihan`,
-    id: 'latihan',
-    name: 'Latihan',
-    element: <Outlet />,
-    children: [
-      {
-        path: `/${rootPaths.pageRoot}/santri/latihan/latihan_soal/pembahasan/:id_nilai`,
-        id: 'detail',
-        name: 'Detail',
-        element: <Pembahasan />,
-      },
-      {
-        path: `/${rootPaths.pageRoot}/santri/latihan/mengaji`,
-        id: 'mengaji',
-        name: 'Mengaji',
-        element: <Mengaji />,
-      },
-      {
-        path: `/${rootPaths.pageRoot}/santri/latihan/latihan_soal`,
-        id: 'latihan_soal',
-        name: 'Latihan soal',
-        element: <LatihanSoal />,
-      },
-      {
-        path: `/${rootPaths.pageRoot}/santri/latihan/mengaji/:id_tingkatan`,
-        id: 'detail',
-        name: 'Detail',
-        element: <DetailJilid />,
-      },
-    ]
-  }
+    path: `/${rootPaths.pageRoot}/santri/latihan/latihan_soal/pembahasan/:id_nilai`,
+    id: 'detail',
+    name: 'Detail',
+    element: <Pembahasan />,
+  },
+  {
+    path: `/${rootPaths.pageRoot}/santri/latihan/mengaji`,
+    id: 'mengaji',
+    name: 'Belajar Ummi',
+    element: <Mengaji />,
+  },
+  {
+    path: `/${rootPaths.pageRoot}/santri/latihan/latihan_soal`,
+    id: 'latihan_soal',
+    name: 'Quiz',
+    element: <LatihanSoal />,
+  },
+  {
+    path: `/${rootPaths.pageRoot}/santri/latihan/mengaji/:id_tingkatan`,
+    id: 'detail',
+    name: 'Detail',
+    element: <DetailJilid />,
+  },
+  // {
+  //   path: `/${rootPaths.pageRoot}/santri/latihan`,
+  //   id: 'latihan',
+  //   name: 'Latihan',
+  //   element: <Outlet />,
+  //   children: [
+  //     {
+  //       path: `/${rootPaths.pageRoot}/santri/latihan/latihan_soal/pembahasan/:id_nilai`,
+  //       id: 'detail',
+  //       name: 'Detail',
+  //       element: <Pembahasan />,
+  //     },
+  //     {
+  //       path: `/${rootPaths.pageRoot}/santri/latihan/mengaji`,
+  //       id: 'mengaji',
+  //       name: 'Mengaji',
+  //       element: <Mengaji />,
+  //     },
+  //     {
+  //       path: `/${rootPaths.pageRoot}/santri/latihan/latihan_soal`,
+  //       id: 'latihan_soal',
+  //       name: 'Latihan soal',
+  //       element: <LatihanSoal />,
+  //     },
+  //     {
+  //       path: `/${rootPaths.pageRoot}/santri/latihan/mengaji/:id_tingkatan`,
+  //       id: 'detail',
+  //       name: 'Detail',
+  //       element: <DetailJilid />,
+  //     },
+  //   ]
+  // }
 ]
 const privateRoutes = [
   ...admin.map((x) => {

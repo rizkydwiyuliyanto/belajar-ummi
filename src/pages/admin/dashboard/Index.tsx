@@ -17,7 +17,7 @@ const Index = () => {
             <>
               <Stack direction={"column"} rowGap={1.25}>
                 <Table Data={result["guru"]} Title={"Data Guru"}/>
-                <Table Data={result["santri"]} Title={"Data Santri"}/>
+                {/* <Table Data={result["santri"]} Title={"Data Santri"}/> */}
               </Stack>
             </>
           }

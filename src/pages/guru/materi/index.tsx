@@ -13,7 +13,7 @@ import TingkatanCard from "components/TingkatanCard";
 
 // const Form = () => {
 //   return (
-//     <NavLink to={'/pages/guru/materi/tambah_tingkatan'}>
+//     <NavLink to={'/pages/guru/belajar_ummi/tambah_tingkatan'}>
 //       <Button variant={'contained'}>Tambah tingkatan</Button>
 //     </NavLink>
 //   );
@@ -38,7 +38,7 @@ const index = () => {
                         <TingkatanCard Value={x}>
                           <Stack direction={"column"} sx={{width: "100%"}}>
                             <NavLink
-                              to={`/pages/guru/materi/kategori_tingkatan/${x?.id_tingkatan}`}
+                              to={`/pages/guru/belajar_ummi/kategori_tingkatan/${x?.id_tingkatan}`}
                               style={{
                                 textDecoration: 'none', width: "100%", display: 'flex', justifyContent: "flex-end", marginBottom:"5px"
                               }}>
@@ -47,7 +47,7 @@ const index = () => {
                               </Button>
                             </NavLink>
                             <NavLink
-                              to={`/pages/guru/materi/detail_tingkatan/${x?.id_tingkatan}`}
+                              to={`/pages/guru/belajar_ummi/detail_tingkatan/${x?.id_tingkatan}`}
                               style={{
                                 textDecoration: 'none', width: "100%", display: 'flex', justifyContent: "flex-end"
                               }}>

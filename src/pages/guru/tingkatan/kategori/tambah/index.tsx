@@ -14,7 +14,6 @@ const index = () => {
     const { id_tingkatan } = params;
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        // /guru/materi/kategori_tingkatan/:id_tingkatan
         const formData = new FormData(formRef.current);
         let obj = {
             id_tingkatan: id_tingkatan
@@ -27,7 +26,7 @@ const index = () => {
         });
         create({ data: obj, link: "/kategori/tambah" })
             .then(() => {
-                navigate('/pages/guru/materi/kategori_tingkatan/' + id_tingkatan);
+                navigate('/pages/guru/belajar_ummi/kategori_tingkatan/' + id_tingkatan);
             })
             .catch(err => {
                 console.log(err);
