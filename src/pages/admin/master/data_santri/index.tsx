@@ -35,6 +35,11 @@ const columns: Column[] = [
   },
   {
     align: '',
+    name: 'tanggal_lahir',
+    label: 'Tanggal lahir',
+  },
+  {
+    align: '',
     name: 'password',
     label: 'Password',
   },

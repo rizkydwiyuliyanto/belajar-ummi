@@ -168,6 +168,20 @@ const guru = [
     name: 'Asesment',
     element: <Asesment />,
   },
+  // {
+  //   path: `/${rootPaths.pageRoot}/guru/asesmen`,
+  //   id: 'asesmen',
+  //   name: 'Asesment',
+  //   element: <Outlet />,
+  //   children: [
+  //     {
+  //       path: `/${rootPaths.pageRoot}/guru/asesmen/materi`,
+  //       id: 'materi',
+  //       name: 'Materi',
+  //       element: <Asesment />,
+  //     },
+  //   ]
+  // },
   {
     path: `/${rootPaths.pageRoot}/guru/asesmen/:id_santri/:id_tingkatan`,
     id: "detail",
