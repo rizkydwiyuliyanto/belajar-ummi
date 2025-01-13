@@ -21,6 +21,7 @@ interface Column {
 export default function index(props: {
   HandleUpdate?: any;
   HandleDelete?: any;
+  HandleDetail?: any;
   NoSearch?: boolean;
   Reload?: any;
   Columns: Column[];
@@ -128,6 +129,17 @@ export default function index(props: {
                           color={'error'}
                         >
                           Delete
+                        </Button>
+                      }
+                      {props?.HandleDetail &&
+                        <Button
+                          size={'small'}
+                          sx={{ paddingY: '0.45em' }}
+                          onClick={() => { props?.HandleDetail(x[primaryKey]) }}
+                          variant={'contained'}
+                          // color={'info'}
+                        >
+                          Detail
                         </Button>
                       }
                     </Stack>

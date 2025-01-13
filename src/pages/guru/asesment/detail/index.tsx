@@ -23,6 +23,7 @@ import {
     url,
 } from 'request/request';
 import useFetch from 'hooks/useFetch';
+import { maxMobile } from 'utils/mediaQuery';
 
 const SelectPage = (props: { Index: any, SetIndex: any, Length: any }) => {
     const handleChange = (event: SelectChangeEvent) => {
@@ -63,6 +64,7 @@ const AudioPlayer = ({ Loading, Hasil, Image, GetData, Key }: { Loading: boolean
     const [open, setOpen] = useState(false);
     const [text, setText] = useState();
     const refAudio = useRef<HTMLDivElement | null>(null);
+    const isMobile = useMediaQuery(maxMobile);
     const refWaveSufver = useRef<WaveSurfer | null>(null);
     let suaraSantri = "";
     if (Hasil.length > 0) {
@@ -118,7 +120,7 @@ const AudioPlayer = ({ Loading, Hasil, Image, GetData, Key }: { Loading: boolean
                         <>
                             {suaraSantri &&
                                 <>
-                                    <div ref={refAudio}>
+                                    <div ref={refAudio} style={{ display: !isMobile ? "block" : "none" }}>
 
                                     </div>
                                 </>
@@ -324,7 +326,7 @@ const index = () => {
     const [halaman, setHalaman] = useState(1);
     const [selectedAudio, setSelectedAudio] = useState([]);
     const [loadingAudio, setLoadingAudio] = useState(true);
-    const matches: boolean = useMediaQuery("(max-width:799px)");
+    const matches: boolean = useMediaQuery(maxMobile);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [openPenilaian, setOpenPenilaian] = useState(false);
     const { id_santri } = params;

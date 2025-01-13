@@ -4,12 +4,9 @@ import CustomPaper from 'components/CustomPaper';
 import CustomContainer from 'components/CustomContainer';
 import ContentParent from 'components/ContentParent';
 import Footer from 'components/Footer';
-import { useContext, useState } from 'react';
-import Quiz from "./Quiz";
-import TimeQuiz from "./TimeQuiz";
+import { useState } from 'react';
 import useFetch from 'hooks/useFetch';
-import { Content } from 'Context/UserContext';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 
 // import Time from "./Time";
 
@@ -42,7 +39,7 @@ const DataNilai = (props: { Data: any, Columns: any }) => {
                                                 </TableCell>
                                             )
                                         })}
-                                        <TableCell>
+                                        <TableCell style={{display:"none"}}>
                                             <NavLink to={"/pages/santri/latihan/latihan_soal/pembahasan/" + elem?.id_nilai}>
                                                 <Button variant={"contained"} size={"small"}>
                                                     Lihat pembahasan
@@ -61,15 +58,10 @@ const DataNilai = (props: { Data: any, Columns: any }) => {
 }
 
 const index = () => {
-    const [pilihLevel, setPilihLevel] = useState();
-    const [start, setStart] = useState(false);
-    const [isCompleted, setIsCompleted] = useState(false);
-    const value = useContext(Content);
-    const r: { id_santri?: string } = value?.user || {};
-    const { result, loading } = useFetch({ link: "/pembahasan/get_data/" + r?.id_santri })
-    const stopQuiz = () => {
-        setStart(false);
-    }
+    const [pilihLevel, setPilihLevel] = useState(1);
+    const params = useParams();
+    const { id_santri } = params;
+    const { result, loading } = useFetch({ link: "/pembahasan/get_data/" + id_santri })
     const handleChange = ((e: any) => {
         setPilihLevel(e.target.value);
     })
@@ -101,61 +93,37 @@ const index = () => {
             label: "Tanggal"
         },
     ]
-    const time = Date.now() + 900000;
     return (
         <>
             <CustomContainer>
                 <ContentParent>
                     <CustomPaper Title={'Quiz'}>
                         {/* <Time/> */}
-                        {!start ?
-                            <Stack justifyContent={"center"}>
-                                <FormControl>
-                                    <Stack alignItems={"end"} spacing={1}>
-                                        <Stack direction={"column"} spacing={1}>
-                                            <Typography variant={"caption"}>
-                                                Pilih level
-                                            </Typography>
-                                            <Select
-                                                labelId="demo-simple-select-label"
-                                                id="demo-simple-select"
-                                                value={pilihLevel}
-                                                sx={{
-                                                    width: "100px",
-                                                }}
-                                                onChange={handleChange}
-                                            >
-                                                <MenuItem value={1}>1</MenuItem>
-                                                <MenuItem value={2}>2</MenuItem>
-                                                <MenuItem value={3}>3</MenuItem>
-                                            </Select>
-                                        </Stack>
-                                        <Button
-                                            size={"small"}
-                                            variant={"contained"}
-                                            onClick={() => {
-                                                if (pilihLevel) setStart(true);
+                        <Stack justifyContent={"center"}>
+                            <FormControl>
+                                <Stack alignItems={"end"} spacing={1}>
+                                    <Stack direction={"column"} spacing={1}>
+                                        <Typography variant={"caption"}>
+                                            Pilih level
+                                        </Typography>
+                                        <Select
+                                            labelId="demo-simple-select-label"
+                                            id="demo-simple-select"
+                                            value={pilihLevel}
+                                            sx={{
+                                                width: "100px",
                                             }}
+                                            onChange={handleChange}
                                         >
-                                            Lanjut
-                                        </Button>
+                                            <MenuItem value={1}>1</MenuItem>
+                                            <MenuItem value={2}>2</MenuItem>
+                                            <MenuItem value={3}>3</MenuItem>
+                                        </Select>
                                     </Stack>
-                                </FormControl>
-                            </Stack>
-                            :
-                            <>
-                                <Stack justifyContent={"center"}>
-                                    <TimeQuiz 
-                                        Time={time} 
-                                        OnComplete={() => {
-                                            setIsCompleted(true);
-                                        }}
-                                    />
                                 </Stack>
-                                <Quiz IsCompleted={isCompleted} Stop={stopQuiz} Time={time} Level={pilihLevel} />
-                            </>
-                        }
-                        {(!loading && !start) &&
+                            </FormControl>
+                        </Stack>
+                        {(!loading) &&
                             <Box
                                 sx={{
                                     marginTop: "22px"
@@ -163,7 +131,7 @@ const index = () => {
                             >
                                 <DataNilai
                                     Columns={columns}
-                                    Data={result}
+                                    Data={result.filter((x: any) => {return x?.id_level == pilihLevel})}
                                 />
                             </Box>
                         }

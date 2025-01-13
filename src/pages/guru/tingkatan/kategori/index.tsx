@@ -8,6 +8,9 @@ import useFetch from 'hooks/useFetch';
 import { Button } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 import CustomTable from 'components/CustomTable';
+import DialogDelete from "components/DialogDelete";
+import { useEffect, useState } from 'react';
+import { remove } from 'request/request';
 
 interface Column {
     align: string;
@@ -18,22 +21,22 @@ interface Column {
 
 const columns: Column[] = [
     {
-        align:"left",
-        name:"id_kategori",
-        primaryTrue:true,
-        label:""
+        align: "left",
+        name: "id_kategori",
+        primaryTrue: true,
+        label: ""
     },
     {
-        align:"left",
-        name:"nama_kategori",
-        primaryTrue:false,
-        label:"Kategori"
+        align: "left",
+        name: "nama_kategori",
+        primaryTrue: false,
+        label: "Kategori"
     },
     {
-        align:"left",
-        name:"nilai",
-        primaryTrue:false,
-        label:"Nilai"
+        align: "left",
+        name: "nilai",
+        primaryTrue: false,
+        label: "Nilai"
     }
 ]
 
@@ -48,10 +51,31 @@ const index = () => {
     const params = useParams();
     const navigate = useNavigate();
     const { id_tingkatan } = params;
-    const { result, loading, } = useFetch({ link: `kategori?id_tingkatan=${id_tingkatan}` });
+    const [openDialog, setOpenDialog] = useState<boolean>(false);
+    const [selectedId, setSelectedId] = useState<any>("");
+    const { result, loading, reload} = useFetch({ link: `kategori?id_tingkatan=${id_tingkatan}` });
     const handleUpdate = (x: any) => {
         navigate(`/pages/guru/belajar_ummi/kategori_tingkatan/edit/${id_tingkatan}/${x}`);
     }
+    const handleClose = () => {
+        setOpenDialog(false);
+    }
+    const handleDelete = () => {
+        remove({ link: '/kategori/delete_kategori', id: selectedId })
+            .then(() => {
+                setSelectedId("");
+                handleClose();
+                setTimeout(() => {
+                    reload(null);
+                }, 250);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }
+    useEffect(() => {
+        console.log(selectedId)
+    }, [selectedId])
     return (
         <>
             <CustomContainer>
@@ -64,9 +88,21 @@ const index = () => {
                                 </pre> */}
                                 <CustomTable
                                     HandleUpdate={handleUpdate}
+                                    HandleDelete={(x: any) => {
+                                        setSelectedId(x);
+                                        setOpenDialog(true);
+                                    }}
                                     Columns={columns}
                                     Data={result}
                                     NoSearch={true}
+                                />
+                                <DialogDelete
+                                    Title={"Hapus kategori"}
+                                    Data={result.find((x: any) => { return x?.id_kategori == selectedId })}
+                                    OpenDialog={openDialog}
+                                    HandleDelete={handleDelete}
+                                    HandleClose={handleClose}
+                                    MaxWidth={"sm"}
                                 />
                             </>
                         }

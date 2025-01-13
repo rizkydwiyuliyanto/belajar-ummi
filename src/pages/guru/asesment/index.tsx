@@ -51,7 +51,7 @@ const Nilai = ({ IdSantri, Tingkatan }: { IdSantri: any, Tingkatan: any }) => {
                                         {!loading && cekNilai(z?.id_tingkatan)}
                                     </Box>
                                     <NavLink to={`/pages/guru/asesmen/${IdSantri}/${z?.id_tingkatan}`}>
-                                        <Button color={"primary"} size={"small"} sx={{margin:0}}>
+                                        <Button color={"primary"} size={"small"} sx={{ margin: 0 }}>
                                             <Typography variant={"caption"}>
                                                 Berikan nilai
                                             </Typography>
@@ -132,6 +132,10 @@ const index = () => {
                     <CustomPaper Title={'Asesmen'}>
                         {!loading &&
                             <>
+                                <Stack direction={"row"} alignItems={"center"} columnGap={1.1}>
+                                    <CheckCircleIcon fontSize={"small"} color={"success"} />
+                                    <Typography>: Lulus</Typography>
+                                </Stack>
                                 <AssesmentTable Data={result} Columns={columns} />
                             </>
                         }

@@ -24,6 +24,7 @@ export default function index(props: {
   OpenDialog: boolean;
   HandleClose: any;
   HandleDelete: any;
+  MaxWidth?: any;
 }) {
   return (
     <React.Fragment>
@@ -31,6 +32,8 @@ export default function index(props: {
         open={props.OpenDialog}
         TransitionComponent={Transition}
         keepMounted
+        fullWidth={true}
+        maxWidth={!props?.MaxWidth ? "sm" : props?.MaxWidth}
         onClose={props.HandleClose}
         aria-describedby="alert-dialog-slide-description"
       >
@@ -38,7 +41,7 @@ export default function index(props: {
         <DialogContent>
           <DialogContentText id="alert-dialog-slide-description">
             <table style={{
-              width:"350px"
+              width:"100%"
             }}>
               <tbody>
                 {props.Data &&
@@ -46,7 +49,7 @@ export default function index(props: {
                     return (
                       <tr key={idx}>
                         <td align={"left"}>{prop.split("_").join(" ")}</td>
-                        <td align={"left"} style={{width:"200px"}}>{props.Data[prop]}</td>
+                        <td align={"left"}>: {props.Data[prop]}</td>
                       </tr>
                     );
                   })}

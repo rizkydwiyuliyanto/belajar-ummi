@@ -1,6 +1,7 @@
 // const Dashboard = lazy(() => import('pages/dashboard'));
 // import { Outlet } from 'react-router-dom';
 import { lazy } from 'react';
+import { Outlet } from 'react-router-dom';
 const Signin = lazy(() => import('pages/authentication/Signin'));
 const Signup = lazy(() => import('pages/authentication/Signup'));
 // Admin
@@ -19,6 +20,8 @@ const TambahTingkatan = lazy(() => import("pages/guru/tingkatan/tambah/index"));
 const DetailTingkatanGuru = lazy(() => import("pages/guru/tingkatan/detail/index"));
 const MasterSoal = lazy(() => import("pages/guru/soal/index"));
 const Asesment = lazy(() => import("pages/guru/asesment/index"));
+const AsesmentQuiz = lazy(() => import("pages/guru/assesment_quiz/index"));
+const DetailAsesmentQuiz = lazy(() => import("pages/guru/assesment_quiz/detail/index"));
 const DetailAsesment = lazy(() => import("pages/guru/asesment/detail/index"));
 const Kategori = lazy(() => import("pages/guru/tingkatan/kategori/index"));
 const TambahKategori = lazy(() => import("pages/guru/tingkatan/kategori/tambah/index"));
@@ -162,26 +165,38 @@ const guru = [
     name: 'Edit',
     element: <EditSantri />,
   },
-  {
-    path: `/${rootPaths.pageRoot}/guru/asesmen`,
-    id: 'asesmen',
-    name: 'Asesment',
-    element: <Asesment />,
-  },
   // {
   //   path: `/${rootPaths.pageRoot}/guru/asesmen`,
   //   id: 'asesmen',
   //   name: 'Asesment',
-  //   element: <Outlet />,
-  //   children: [
-  //     {
-  //       path: `/${rootPaths.pageRoot}/guru/asesmen/materi`,
-  //       id: 'materi',
-  //       name: 'Materi',
-  //       element: <Asesment />,
-  //     },
-  //   ]
+  //   element: <Asesment />,
   // },
+  {
+    path: `/${rootPaths.pageRoot}/guru/asesmen`,
+    id: 'asesmen',
+    name: 'Asesment',
+    element: <Outlet />,
+    children: [
+      {
+        path: `/${rootPaths.pageRoot}/guru/asesmen/materi`,
+        id: 'materi',
+        name: 'Materi',
+        element: <Asesment />,
+      },
+      {
+        path: `/${rootPaths.pageRoot}/guru/asesmen/quiz`,
+        id: 'quiz',
+        name: 'Quiz',
+        element: <AsesmentQuiz />,
+      },
+      {
+        path: `/${rootPaths.pageRoot}/guru/asesmen/quiz/:id_santri`,
+        id: 'detail',
+        name: 'Detail',
+        element: <DetailAsesmentQuiz />,
+      },
+    ]
+  },
   {
     path: `/${rootPaths.pageRoot}/guru/asesmen/:id_santri/:id_tingkatan`,
     id: "detail",
