@@ -108,7 +108,7 @@ const guru = [
   {
     path: `/${rootPaths.pageRoot}/guru/belajar_ummi`,
     id: 'belajar_ummi',
-    name: 'Belajar Ummi',
+    name: 'Materi',
     element: <MateriGuru />,
   },
   {
