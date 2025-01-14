@@ -76,7 +76,7 @@ const GridItems = (props: {
                                                             } */}
                             {(props?.IndexUpdate !== idx) &&
                                 <>
-                                    <Stack direction={"column"} alignItems={"end"} sx={{width: "100%"}} rowGap={2}>
+                                    <Stack direction={"column"} alignItems={"end"} sx={{ width: "100%" }} rowGap={2}>
                                         <Stack direction={"row"} spacing={1}>
                                             {/* <Button onClick={() => { props?.SetIndexUpdate(idx) }} color={"primary"} variant={"contained"} size={"small"}>Edit</Button> */}
                                             <Button onClick={() => {
@@ -217,6 +217,18 @@ const index = () => {
             value: "3",
             label: "3"
         },
+        {
+            value: "4",
+            label: "4"
+        },
+        {
+            value: "5",
+            label: "5"
+        },
+        {
+            value: "6",
+            label: "6"
+        },
     ]
     useEffect(() => {
         let a = false
@@ -240,7 +252,7 @@ const index = () => {
                         {!loading &&
                             <>
                                 <Box p={2}>
-                                    <Stack sx={{margin:"10px 0"}} direction={"row"} justifyContent={"space-between"} alignItems={"center"}>
+                                    <Stack sx={{ margin: "10px 0" }} direction={"row"} justifyContent={"space-between"} alignItems={"center"}>
                                         <Button
                                             variant={"contained"}
                                             size={"small"}
@@ -252,7 +264,7 @@ const index = () => {
                                         >
                                             Tambah soal
                                         </Button>
-                                        <Stack direction={"row"} spacing={2} sx={{display:"none"}}>
+                                        <Stack direction={"row"} spacing={2} sx={{ display: "none" }}>
                                             <IconButton onClick={() => {
                                                 setDisplay("grid")
                                             }}
@@ -276,6 +288,11 @@ const index = () => {
                                             </IconButton>
                                         </Stack>
                                     </Stack>
+                                    <Box sx={{ marginTop: "22px" }}>
+                                        {jumlahForm > 0 &&
+                                            <FormTambahSoal GetData={getData} Level={level} SetJumlahForm={setJumlahForm} />
+                                        }
+                                    </Box>
                                     <Box sx={{
                                         margin: "17px 0"
                                     }}>
@@ -298,9 +315,7 @@ const index = () => {
                                             </Typography>
                                         }
                                     </Box>
-                                    {jumlahForm > 0 &&
-                                        <FormTambahSoal GetData={getData} Level={level} SetJumlahForm={setJumlahForm} />
-                                    }
+
                                 </Box>
                             </>
                         }
