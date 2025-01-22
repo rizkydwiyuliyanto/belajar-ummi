@@ -89,7 +89,7 @@ const index = () => {
         <>
             <CustomContainer>
                 <ContentParent>
-                    <CustomPaper Title={"Hasil"}>
+                    <CustomPaper Title={"Tabel penilaian"}>
                         <Box>
                             <GridContainer>
                                 {dataHasil.length > 0 &&
