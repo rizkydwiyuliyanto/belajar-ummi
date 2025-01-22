@@ -5,19 +5,23 @@ import CustomPaper from 'components/CustomPaper';
 import Footer from 'components/Footer';
 // import Select, { SelectChangeEvent } from '@mui/material/Select';
 // import { Stack, Box, Typography, MenuItem, Button } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { select } from 'request/request';
-import { Box, Stack, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@mui/material';
+import { Box, Stack, Table, TableBody, TableCell, TableHead, TableRow, Typography, useMediaQuery } from '@mui/material';
 import useFetch from 'hooks/useFetch';
+import GeneratePDF from "components/GeneratePDF/index";
+import { maxMobile } from 'utils/mediaQuery';
+
 // import { useMediaQuery } from "@mui/material";
 const GridContainer = ({ children }: { children: any }) => {
+    const isMobile = useMediaQuery(maxMobile);
     return (
         <>
             <div style={{
                 display: "grid",
                 gap: "22px",
-                gridTemplateColumns: "repeat(auto-fit, minmax(400px, 1fr))"
+                gridTemplateColumns: `repeat(auto-fit, minmax(${isMobile ? "100%" : "400px"}, 1fr))`
             }}>
                 {children}
             </div>
@@ -59,6 +63,9 @@ const ItemKategori = ({ Data }: { Data: any }) => {
 }
 const index = () => {
     const [dataHasil, setDataHasil] = useState<any>([]);
+    const params = useParams();
+    const { id_santri } = params;
+    const {result, loading} : {result: any, loading: boolean} = useFetch({link:`/santri/get_data/${id_santri}`});
     const getData = async () => {
         try {
             const data: any[] = [];
@@ -82,6 +89,8 @@ const index = () => {
     }
     // kategori/nama_kategori;
     // tingkatan/get_data;
+    const isMobile = useMediaQuery(maxMobile);
+    const ref = useRef(null as any);
     useEffect(() => {
         getData();
     }, []);
@@ -89,47 +98,57 @@ const index = () => {
         <>
             <CustomContainer>
                 <ContentParent>
-                    <CustomPaper Title={"Tabel penilaian"}>
-                        <Box>
-                            <GridContainer>
-                                {dataHasil.length > 0 &&
+                    <CustomPaper Title={"Tabel penilaian"} Form={!isMobile ? <GeneratePDF Ref={ref}/> : ""}>
+                        <Box ref={ref}>
+                            <Stack direction={"column"} rowGap={1.25}>
+                                {!loading &&
                                     <>
-                                        {dataHasil.map((x: any) => {
-                                            const tingkatan = x[0];
-                                            return (
+                                        <Stack paddingY={"10px"}>
+                                            <Typography variant={"h6"}>Santri: {result?.nama_lengkap}</Typography>
+                                            {/* <pre>{JSON.stringify(result, null, 2)}</pre> */}
+                                        </Stack>
+                                        <GridContainer>
+                                            {dataHasil.length > 0 &&
                                                 <>
-                                                    <Stack direction={"column"} rowGap={1.25}>
-                                                        <Typography variant={"h6"} sx={{ borderBottom: "1.2px solid #dddddd", paddingBottom: "8px" }}>{tingkatan?.nama_tingkatan}</Typography>
-                                                        <Box sx={{
-                                                            borderRadius: "7px",
-                                                            boxShadow: "rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px"
-                                                        }}>
-                                                            <Table>
-                                                                <TableHead>
-                                                                    <TableRow>
-                                                                        <TableCell>Kategori</TableCell>
-                                                                        <TableCell>Penilaian</TableCell>
-                                                                        <TableCell>Minimal</TableCell>
-                                                                    </TableRow>
-                                                                </TableHead>
-                                                                <TableBody>
-                                                                    {x.map((y: any) => {
-                                                                        return (
-                                                                            <TableRow sx={{ border: "none" }}>
-                                                                                <ItemKategori Data={y} />
-                                                                            </TableRow>
-                                                                        )
-                                                                    })}
-                                                                </TableBody>
-                                                            </Table>
-                                                        </Box>
-                                                    </Stack>
+                                                    {dataHasil.map((x: any) => {
+                                                        const tingkatan = x[0];
+                                                        return (
+                                                            <>
+                                                                <Stack direction={"column"} rowGap={1.25}>
+                                                                    <Typography variant={"h6"} sx={{ borderBottom: "1.2px solid #dddddd", paddingBottom: "8px" }}>{tingkatan?.nama_tingkatan}</Typography>
+                                                                    <Box sx={{
+                                                                        borderRadius: "7px",
+                                                                        boxShadow: "rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px"
+                                                                    }}>
+                                                                        <Table sx={{width:"100%"}}>
+                                                                            <TableHead>
+                                                                                <TableRow>
+                                                                                    <TableCell>Kategori</TableCell>
+                                                                                    <TableCell>Penilaian</TableCell>
+                                                                                    <TableCell>Minimal</TableCell>
+                                                                                </TableRow>
+                                                                            </TableHead>
+                                                                            <TableBody>
+                                                                                {x.map((y: any) => {
+                                                                                    return (
+                                                                                        <TableRow sx={{ border: "none" }}>
+                                                                                            <ItemKategori Data={y} />
+                                                                                        </TableRow>
+                                                                                    )
+                                                                                })}
+                                                                            </TableBody>
+                                                                        </Table>
+                                                                    </Box>
+                                                                </Stack>
+                                                            </>
+                                                        )
+                                                    })}
                                                 </>
-                                            )
-                                        })}
+                                            }
+                                        </GridContainer>
                                     </>
                                 }
-                            </GridContainer>
+                            </Stack>
                         </Box>
                     </CustomPaper>
                 </ContentParent>
