@@ -1,9 +1,9 @@
 /* eslint-disable no-useless-catch */
 import axios from 'axios';
 
-// const url = "http://localhost/react-quiz-be"
+const url = "http://localhost/react-quiz-be"
 // const url = "https://limegreen-skunk-216580.hostingersite.com"
-const url = "https://react-quiz-be.fun"
+// const url = "https://react-quiz-be.fun"
 
 const instance = axios.create({
   baseURL: url,

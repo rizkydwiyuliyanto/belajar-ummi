@@ -26,6 +26,7 @@ const DetailAsesment = lazy(() => import("pages/guru/asesment/detail/index"));
 const Kategori = lazy(() => import("pages/guru/tingkatan/kategori/index"));
 const TambahKategori = lazy(() => import("pages/guru/tingkatan/kategori/tambah/index"));
 const EditKategori = lazy(() => import("pages/guru/tingkatan/kategori/edit/index"));
+const HasilAsesment = lazy(() => import("pages/guru/asesment/Hasil/index"));
 
 // Santri
 const DashboardSantri = lazy(() => import("pages/santri/dashboard"));
@@ -202,6 +203,12 @@ const guru = [
     id: "detail",
     name: "Detail",
     element: <DetailAsesment />
+  },
+  {
+    path: `/${rootPaths.pageRoot}/guru/asesmen/hasil/:id_santri`,
+    id: "detail",
+    name: "Detail",
+    element: <HasilAsesment />
   }
 ]
 const santri = [

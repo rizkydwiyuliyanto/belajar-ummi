@@ -92,6 +92,9 @@ const AssesmentTable = ({ Columns, Data }: { Columns: Columns[], Data: any }) =>
                                             </TableCell>
                                         )
                                     })}
+                                    <TableCell>
+                                        Action
+                                    </TableCell>
                                 </>
                             }
                         </TableRow>
@@ -107,6 +110,11 @@ const AssesmentTable = ({ Columns, Data }: { Columns: Columns[], Data: any }) =>
                                             )
                                         })}
                                         <Nilai Tingkatan={result} IdSantri={x?.id_santri} />
+                                        <TableCell>
+                                            <NavLink to={`/pages/guru/asesmen/hasil/${x?.id_santri}`}>
+                                                <Button variant={"contained"} size={"small"}>Hasil</Button>
+                                            </NavLink>
+                                        </TableCell>
                                     </TableRow>
                                 </>
                             )
