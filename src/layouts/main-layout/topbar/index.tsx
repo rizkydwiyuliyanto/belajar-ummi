@@ -1,15 +1,15 @@
-import Link from '@mui/material/Link';
+// import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 // import Badge from '@mui/material/Badge';
 // import LanguageSelect from './LanguageSelect';
 import Toolbar from '@mui/material/Toolbar';
 import TextField from '@mui/material/TextField';
-import ButtonBase from '@mui/material/ButtonBase';
+// import ButtonBase from '@mui/material/ButtonBase';
 import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import IconifyIcon from 'components/base/IconifyIcon';
-import Image from 'components/base/Image';
-import LogoImg from 'assets/images/Logo.png';
+// import Image from 'components/base/Image';
+// import LogoImg from 'assets/images/Logo.png';
 import ProfileMenu from './ProfileMenu';
 
 interface TopbarProps {
@@ -37,14 +37,14 @@ const Topbar = ({ isClosing, mobileOpen, setMobileOpen }: TopbarProps) => {
       zIndex={1200}
     >
       <Stack spacing={{ xs: 1, sm: 2 }} alignItems="center">
-        <ButtonBase
+        {/* <ButtonBase
           component={Link}
           href="/"
           disableRipple
           sx={{ lineHeight: 0, display: { xs: 'none', sm: 'block', lg: 'none' } }}
         >
           <Image src={LogoImg} alt="logo" height={54} width={54} />
-        </ButtonBase>
+        </ButtonBase> */}
 
         <Toolbar sx={{ display: { xm: 'block', lg: 'none' } }}>
           <IconButton

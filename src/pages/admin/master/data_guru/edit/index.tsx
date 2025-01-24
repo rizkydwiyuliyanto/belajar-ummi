@@ -96,7 +96,7 @@ const index = () => {
                       variant="filled"
                       rows={3}
                       color={'secondary'}
-                      defaultValue={selectedData?.nomor_hp}
+                      defaultValue={selectedData?.no_hp}
 
                       placeholder="Nomor HP"
                       fullWidth
