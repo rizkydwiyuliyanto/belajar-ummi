@@ -65,7 +65,7 @@ const index = () => {
     const [dataHasil, setDataHasil] = useState<any>([]);
     const params = useParams();
     const { id_santri } = params;
-    const {result, loading} : {result: any, loading: boolean} = useFetch({link:`/santri/get_data/${id_santri}`});
+    const {result, loading} : {result: any, loading: boolean} = useFetch({link:`/santri/get_data_selected/${id_santri}`});
     const getData = async () => {
         try {
             const data: any[] = [];

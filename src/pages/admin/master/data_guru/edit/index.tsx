@@ -77,39 +77,28 @@ const index = () => {
                   </Alert>
                 )}
                 <Grid container spacing={2} justifyContent={'space-between'} alignItems={"flex-end"}>
-                  <Grid item md={3}>
-                    <TextField
-                      id="username"
-                      name="username"
-                      variant="filled"
-                      color={'secondary'}
-                      defaultValue={selectedData?.username}
-                      required
-                      placeholder="Username"
-                      fullWidth
-                    />
-                  </Grid>
-                  <Grid item md={3}>
-                    <TextField
-                      id="password"
-                      name="password"
-                      variant="filled"
-                      color={'secondary'}
-                      defaultValue={selectedData?.password}
-                      required
-                      placeholder="Your Password"
-                      fullWidth
-                    />
-                  </Grid>
-                  <Grid item md={3}>
+                  <Grid item md={6}>
                     <TextField
                       id="nama_lengkap"
                       name="nama_lengkap"
                       variant="filled"
                       color={'secondary'}
                       defaultValue={selectedData?.nama_lengkap}
-                      required
+
                       placeholder="Nama lengkap"
+                      fullWidth
+                    />
+                  </Grid>
+                  <Grid item md={3}>
+                    <TextField
+                      id="no_hp"
+                      name="no_hp"
+                      variant="filled"
+                      rows={3}
+                      color={'secondary'}
+                      defaultValue={selectedData?.nomor_hp}
+
+                      placeholder="Nomor HP"
                       fullWidth
                     />
                   </Grid>
@@ -120,15 +109,52 @@ const index = () => {
                       </Typography>
                       <TextField
                         id="tanggal_lahir"
-                        defaultValue={selectedData?.tanggal_lahir}
                         name="tanggal_lahir"
                         variant="filled"
                         type={"date"}
                         color={'secondary'}
+                        defaultValue={selectedData?.tanggal_lahir}
+
                         placeholder="Tanggal lahir"
                         fullWidth
                       />
                     </Stack>
+                  </Grid>
+                  <Grid item md={3}>
+                    <TextField
+                      id="username"
+                      name="username"
+                      variant="filled"
+                      color={'secondary'}
+                      placeholder="Username"
+                      defaultValue={selectedData?.username}
+
+                      fullWidth
+                    />
+                  </Grid>
+                  <Grid item md={3}>
+                    <TextField
+                      id="password"
+                      name="password"
+                      variant="filled"
+                      color={'secondary'}
+                      defaultValue={selectedData?.password}
+                      placeholder="Your Password"
+                      fullWidth
+                    />
+                  </Grid>
+                  <Grid item md={6}>
+                    <TextField
+                      id="alamat"
+                      name="alamat"
+                      variant="filled"
+                      rows={4}
+                      multiline
+                      defaultValue={selectedData?.alamat}
+                      color={'secondary'}
+                      placeholder="Alamat"
+                      fullWidth
+                    />
                   </Grid>
                 </Grid>
                 <Button sx={{ marginLeft: 'auto' }} type="submit" variant="contained" size="medium">

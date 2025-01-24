@@ -5,18 +5,20 @@ import Footer from 'components/Footer';
 import CustomPaper from 'components/CustomPaper';
 import { Alert, Button, Stack, TextField, Typography } from '@mui/material';
 import Grid from '@mui/material/Grid';
-import { FormEvent, useEffect, useRef, useState } from 'react';
+import { FormEvent, useContext, useEffect, useRef, useState } from 'react';
 import { select, update } from 'request/request';
 import { useNavigate, useParams } from 'react-router-dom';
+import { Content } from 'Context/UserContext';
 const index = () => {
   const formRef = useRef(null as any);
   const [selectedData, setSelectedData] = useState<any>({});
   const [loading, setLoading] = useState<boolean>(true);
   const params = useParams();
+  const value = useContext(Content);
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
   const getData = () => {
-    select({ link: '/santri/get_data/' + params?.id_santri })
+    select({ link: '/santri/get_data_selected/' + params?.id_santri })
       .then((res) => {
         const { data } = res.data;
         setSelectedData(data);
@@ -29,7 +31,10 @@ const index = () => {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(formRef.current);
-    let obj = {};
+    const user: any = value?.user
+    let obj = {
+      id_guru: user?.id_guru
+    };
     formData.forEach((value, key) => {
       obj = {
         ...obj,
@@ -77,39 +82,27 @@ const index = () => {
                   </Alert>
                 )}
                 <Grid container spacing={2} justifyContent={'space-between'} alignItems={"flex-end"}>
-                  <Grid item md={3}>
-                    <TextField
-                      id="username"
-                      name="username"
-                      variant="filled"
-                      color={'secondary'}
-                      defaultValue={selectedData?.username}
-                      required
-                      placeholder="Username"
-                      fullWidth
-                    />
-                  </Grid>
-                  <Grid item md={3}>
-                    <TextField
-                      id="password"
-                      name="password"
-                      variant="filled"
-                      color={'secondary'}
-                      defaultValue={selectedData?.password}
-                      required
-                      placeholder="Your Password"
-                      fullWidth
-                    />
-                  </Grid>
-                  <Grid item md={3}>
+
+                  <Grid item md={6}>
                     <TextField
                       id="nama_lengkap"
                       name="nama_lengkap"
                       variant="filled"
                       color={'secondary'}
                       defaultValue={selectedData?.nama_lengkap}
-                      required
                       placeholder="Nama lengkap"
+                      fullWidth
+                    />
+                  </Grid>
+                  <Grid item md={3}>
+                    <TextField
+                      id="no_hp"
+                      name="no_hp"
+                      variant="filled"
+                      rows={3}
+                      defaultValue={selectedData?.no_hp}
+                      color={'secondary'}
+                      placeholder="Nomor HP"
                       fullWidth
                     />
                   </Grid>
@@ -120,15 +113,50 @@ const index = () => {
                       </Typography>
                       <TextField
                         id="tanggal_lahir"
-                        defaultValue={selectedData?.tanggal_lahir}
                         name="tanggal_lahir"
                         variant="filled"
+                        defaultValue={selectedData?.tanggal_lahir}
                         type={"date"}
                         color={'secondary'}
                         placeholder="Tanggal lahir"
                         fullWidth
                       />
                     </Stack>
+                  </Grid>
+                  <Grid item md={3}>
+                    <TextField
+                      id="username"
+                      name="username"
+                      variant="filled"
+                      color={'secondary'}
+                      defaultValue={selectedData?.username}
+                      placeholder="Username"
+                      fullWidth
+                    />
+                  </Grid>
+                  <Grid item md={3}>
+                    <TextField
+                      id="password"
+                      name="password"
+                      variant="filled"
+                      defaultValue={selectedData?.password}
+                      color={'secondary'}
+                      placeholder="Your Password"
+                      fullWidth
+                    />
+                  </Grid>
+                  <Grid item md={6}>
+                    <TextField
+                      id="alamat"
+                      name="alamat"
+                      variant="filled"
+                      rows={4}
+                      defaultValue={selectedData?.alamat}
+                      multiline
+                      color={'secondary'}
+                      placeholder="Alamat"
+                      fullWidth
+                    />
                   </Grid>
                 </Grid>
                 <Button sx={{ marginLeft: 'auto' }} type="submit" variant="contained" size="medium">

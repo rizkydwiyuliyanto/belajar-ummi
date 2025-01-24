@@ -8,8 +8,9 @@ import ContentParent from 'components/ContentParent';
 import Footer from 'components/Footer';
 import DialogDelete from 'components/DialogDelete';
 import useFetch from 'hooks/useFetch';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { remove } from 'request/request';
+import { Content } from 'Context/UserContext';
 interface Column {
   align: string;
   name: string;
@@ -53,7 +54,10 @@ const Form = () => {
 };
 
 const index = () => {
-  const { result, loading, reload } = useFetch({ link: '/santri/get_data' });
+  const value = useContext(Content);
+  const user: any = value?.user
+  const idGuru = user?.id_guru;
+  const { result, loading, reload } = useFetch({ link: '/santri/get_data/' + idGuru });
   const navigate = useNavigate();
   const handleUpdate = (x: string) => {
     navigate('/pages/guru/master/data_santri/edit/' + x);

@@ -59,35 +59,24 @@ const index = () => {
                 </Alert>
               )}
               <Grid container spacing={2} justifyContent={'space-between'} alignItems={"flex-end"}>
-                <Grid item md={3}>
-                  <TextField
-                    id="username"
-                    name="username"
-                    variant="filled"
-                    color={'secondary'}
-                    required
-                    placeholder="Username"
-                    fullWidth
-                  />
-                </Grid>
-                <Grid item md={3}>
-                  <TextField
-                    id="password"
-                    name="password"
-                    variant="filled"
-                    color={'secondary'}
-                    required
-                    placeholder="Your Password"
-                    fullWidth
-                  />
-                </Grid>
-                <Grid item md={3}>
+              <Grid item md={6}>
                   <TextField
                     id="nama_lengkap"
                     name="nama_lengkap"
                     variant="filled"
                     color={'secondary'}
                     placeholder="Nama lengkap"
+                    fullWidth
+                  />
+                </Grid>
+                <Grid item md={3}>
+                  <TextField
+                    id="no_hp"
+                    name="no_hp"
+                    variant="filled"
+                    rows={3}
+                    color={'secondary'}
+                    placeholder="Nomor HP"
                     fullWidth
                   />
                 </Grid>
@@ -106,6 +95,38 @@ const index = () => {
                       fullWidth
                     />
                   </Stack>
+                </Grid>
+                <Grid item md={3}>
+                  <TextField
+                    id="username"
+                    name="username"
+                    variant="filled"
+                    color={'secondary'}
+                    placeholder="Username"
+                    fullWidth
+                  />
+                </Grid>
+                <Grid item md={3}>
+                  <TextField
+                    id="password"
+                    name="password"
+                    variant="filled"
+                    color={'secondary'}
+                    placeholder="Your Password"
+                    fullWidth
+                  />
+                </Grid>
+                <Grid item md={6}>
+                  <TextField
+                    id="alamat"
+                    name="alamat"
+                    variant="filled"
+                    rows={4}
+                    multiline
+                    color={'secondary'}
+                    placeholder="Alamat"
+                    fullWidth
+                  />
                 </Grid>
               </Grid>
               <Button sx={{ marginLeft: 'auto' }} type="submit" variant="contained" size="medium">

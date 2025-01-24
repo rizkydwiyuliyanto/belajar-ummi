@@ -10,9 +10,11 @@ import { NavLink } from 'react-router-dom';
 import { select } from 'request/request';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import {
+    useContext,
     useEffect,
     useState
 } from 'react';
+import { Content } from 'Context/UserContext';
 interface Columns {
     id: string,
     label: string
@@ -126,7 +128,10 @@ const AssesmentTable = ({ Columns, Data }: { Columns: Columns[], Data: any }) =>
     )
 }
 const index = () => {
-    const { result, loading } = useFetch({ link: '/santri/get_data' });
+    const value = useContext(Content);
+    const user: any = value?.user
+    const idGuru = user?.id_guru;
+    const { result, loading } = useFetch({ link: '/santri/get_data/'+idGuru });
     const columns: Columns[] = [
         {
             "id": "nama_lengkap",
