@@ -13,7 +13,7 @@ import { Button } from '@mui/material';
 const columns: GridColDef<(typeof rows)[number]>[] = [
   {
     field: 'nama_lengkap',
-    headerName: 'Santri',
+    headerName: 'Guru',
     editable: false,
     align: 'left',
     flex: 2,
