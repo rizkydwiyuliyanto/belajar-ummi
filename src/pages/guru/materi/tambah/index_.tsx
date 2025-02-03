@@ -28,7 +28,7 @@ const Dashboard = () => {
         setLoading(false);
         setFileInput([]);
         setTimeout(() => {
-          navigate(`/pages/guru/belajar_ummi/detail_tingkatan/${id_tingkatan}`);
+          navigate(`/pages/admin/materi/detail_tingkatan/${id_tingkatan}`);
         }, 250);
         console.log(res);
       })

@@ -81,7 +81,7 @@ const index = () => {
                   />
                 </Grid>
                 <Grid item md={3}>
-                  <Stack direction={"column"} rowGap={1}>
+                  <Stack direction={"column"} width={"100%"} rowGap={1}>
                     <Typography variant={"caption"} color={"#54577a"}>
                       Tanggal lahir :
                     </Typography>

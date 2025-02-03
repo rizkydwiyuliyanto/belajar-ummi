@@ -37,7 +37,7 @@ const index = () => {
         });
         update({ data: obj, link: '/kategori/edit', id: id_kategori })
             .then(() => {
-                navigate('/pages/guru/belajar_ummi/kategori_tingkatan/' + id_tingkatan);
+                navigate('/pages/admin/materi/kategori_tingkatan/' + id_tingkatan);
             })
             .catch((err) => {
                 console.log(err);

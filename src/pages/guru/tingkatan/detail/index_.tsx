@@ -13,7 +13,7 @@ import { showImage } from 'request/request';
 
 const Form = (props: { Id: any }) => {
   return (
-    <NavLink to={'/pages/guru/belajar_ummi/tambah_materi/' + props.Id}>
+    <NavLink to={'/pages/admin/materi/tambah_materi/' + props.Id}>
       <Button variant={'contained'}>Tambah materi</Button>
     </NavLink>
   );

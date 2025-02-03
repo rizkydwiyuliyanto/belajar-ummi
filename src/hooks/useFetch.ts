@@ -16,7 +16,6 @@ const useFetch = ({ link }: { link: string }) => {
       .then((res) => {
         const { data } = res.data;
         setData(data);
-        console.log(data);
         setLoading(false);
       })
       .catch((err) => {

@@ -55,6 +55,48 @@ const admin: RouteItem[] = [
     element: <DashboardAdmin />,
   },
   {
+    path: `/${rootPaths.pageRoot}/admin/materi`,
+    id: 'materi',
+    name: 'Materi',
+    element: <MateriGuru />,
+  },
+  {
+    path: `/${rootPaths.pageRoot}/admin/materi/tambah_tingkatan`,
+    id: 'tambah',
+    name: 'Tambah',
+    element: <TambahTingkatan />,
+  },
+  {
+    path: `/${rootPaths.pageRoot}/admin/materi/detail_tingkatan/:id_tingkatan`,
+    id: 'detail',
+    name: 'Detail',
+    element: <DetailTingkatanGuru />,
+  },
+  {
+    path: `/${rootPaths.pageRoot}/admin/materi/kategori_tingkatan/:id_tingkatan`,
+    id: 'detail',
+    name: 'Detail',
+    element: <Kategori />,
+  },
+  {
+    path: `/${rootPaths.pageRoot}/admin/materi/kategori_tingkatan/tambah/:id_tingkatan`,
+    id: 'tambah',
+    name: 'Tambah',
+    element: <TambahKategori />,
+  },
+  {
+    path: `/${rootPaths.pageRoot}/admin/materi/kategori_tingkatan/edit/:id_tingkatan/:id_kategori`,
+    id: 'edit',
+    name: 'Edit',
+    element: <EditKategori />,
+  },
+  {
+    path: `/${rootPaths.pageRoot}/admin/quiz`,
+    id: 'quiz',
+    name: 'Quiz',
+    element: <MasterSoal />,
+  },
+  {
     path: `/${rootPaths.pageRoot}/admin/master/data_guru`,
     id: 'data_guru',
     name: 'Data guru',
@@ -107,48 +149,6 @@ const guru = [
     element: <DashboardGuru />,
   },
   {
-    path: `/${rootPaths.pageRoot}/guru/belajar_ummi`,
-    id: 'belajar_ummi',
-    name: 'Materi',
-    element: <MateriGuru />,
-  },
-  {
-    path: `/${rootPaths.pageRoot}/guru/belajar_ummi/tambah_tingkatan`,
-    id: 'tambah',
-    name: 'Tambah',
-    element: <TambahTingkatan />,
-  },
-  {
-    path: `/${rootPaths.pageRoot}/guru/belajar_ummi/detail_tingkatan/:id_tingkatan`,
-    id: 'detail',
-    name: 'Detail',
-    element: <DetailTingkatanGuru />,
-  },
-  {
-    path: `/${rootPaths.pageRoot}/guru/belajar_ummi/kategori_tingkatan/:id_tingkatan`,
-    id: 'detail',
-    name: 'Detail',
-    element: <Kategori />,
-  },
-  {
-    path: `/${rootPaths.pageRoot}/guru/belajar_ummi/kategori_tingkatan/tambah/:id_tingkatan`,
-    id: 'tambah',
-    name: 'Tambah',
-    element: <TambahKategori />,
-  },
-  {
-    path: `/${rootPaths.pageRoot}/guru/belajar_ummi/kategori_tingkatan/edit/:id_tingkatan/:id_kategori`,
-    id: 'edit',
-    name: 'Edit',
-    element: <EditKategori />,
-  },
-  {
-    path: `/${rootPaths.pageRoot}/guru/quiz`,
-    id: 'quiz',
-    name: 'Quiz',
-    element: <MasterSoal />,
-  },
-  {
     path: `/${rootPaths.pageRoot}/guru/master/data_santri`,
     id: 'data_santri',
     name: 'Data santri',
@@ -185,6 +185,18 @@ const guru = [
         element: <Asesment />,
       },
       {
+        path: `/${rootPaths.pageRoot}/guru/asesmen/materi/hasil/:id_santri`,
+        id: "detail",
+        name: "Detail",
+        element: <HasilAsesment />
+      },
+      {
+        path: `/${rootPaths.pageRoot}/guru/asesmen/materi/:id_santri/:id_tingkatan`,
+        id: "detail",
+        name: "Detail",
+        element: <DetailAsesment />
+      },
+      {
         path: `/${rootPaths.pageRoot}/guru/asesmen/quiz`,
         id: 'quiz',
         name: 'Quiz',
@@ -198,18 +210,6 @@ const guru = [
       },
     ]
   },
-  {
-    path: `/${rootPaths.pageRoot}/guru/asesmen/:id_santri/:id_tingkatan`,
-    id: "detail",
-    name: "Detail",
-    element: <DetailAsesment />
-  },
-  {
-    path: `/${rootPaths.pageRoot}/guru/asesmen/hasil/:id_santri`,
-    id: "detail",
-    name: "Detail",
-    element: <HasilAsesment />
-  }
 ]
 const santri = [
   {

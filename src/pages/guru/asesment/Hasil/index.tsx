@@ -33,7 +33,9 @@ const ItemKategori = ({ Data }: { Data: any }) => {
     const { id_santri } = params;
     const { loading, result } = useFetch({ link: `/kategori/nilai_kategori?id_santri=${id_santri}&id_kategori=${Data?.id_kategori}` });
     const color = (nilai: any) => {
-        if (nilai >= Data?.nilai) {
+        // console.log(nilai >= Data?.nilai);
+        // console.log()
+        if (parseInt(nilai) >= parseInt(Data?.nilai)) {
             return "green"
         }
         return "red";

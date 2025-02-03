@@ -52,7 +52,7 @@ const Nilai = ({ IdSantri, Tingkatan }: { IdSantri: any, Tingkatan: any }) => {
                                     <Box>
                                         {!loading && cekNilai(z?.id_tingkatan)}
                                     </Box>
-                                    <NavLink to={`/pages/guru/asesmen/${IdSantri}/${z?.id_tingkatan}`}>
+                                    <NavLink to={`/pages/guru/asesmen/materi/${IdSantri}/${z?.id_tingkatan}`}>
                                         <Button color={"primary"} size={"small"} sx={{ margin: 0 }}>
                                             <Typography variant={"caption"}>
                                                 Berikan nilai
@@ -113,7 +113,7 @@ const AssesmentTable = ({ Columns, Data }: { Columns: Columns[], Data: any }) =>
                                         })}
                                         <Nilai Tingkatan={result} IdSantri={x?.id_santri} />
                                         <TableCell>
-                                            <NavLink to={`/pages/guru/asesmen/hasil/${x?.id_santri}`}>
+                                            <NavLink to={`/pages/guru/asesmen/materi/hasil/${x?.id_santri}`}>
                                                 <Button variant={"contained"} size={"small"}>Hasil</Button>
                                             </NavLink>
                                         </TableCell>

@@ -26,7 +26,7 @@ const index = () => {
         });
         create({ data: obj, link: "/kategori/tambah" })
             .then(() => {
-                navigate('/pages/guru/belajar_ummi/kategori_tingkatan/' + id_tingkatan);
+                navigate('/pages/admin/materi/kategori_tingkatan/' + id_tingkatan);
             })
             .catch(err => {
                 console.log(err);
